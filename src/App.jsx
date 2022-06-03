@@ -34,8 +34,9 @@ function App() {
                       <table className="table table-hover table-bordered table-responsive-xl ">
                             <thead>
                                 <tr className="table-active colorBordeTabla">
-                                    <th scope="col">ID Committer</th>
-                                    <th scope="col">Autor</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Autor Name</th>
+                                    <th scope="col">Author Login</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Comentario</th>
                                 </tr>
@@ -43,8 +44,10 @@ function App() {
                             <tbody>
                              {reducers.listcommits.map(item=>
                              <tr key={item.sha}>
-                               <td>{item.committer.id}</td>
+                               <td>{item.sha}</td>
                                <td>{item.commit.author.name}</td>
+                               <td>{item.author.login}</td>
+
                                <td>{formatoFecha(item.commit.author.date)}</td>
                                <td>{item.commit.message}</td>
 
