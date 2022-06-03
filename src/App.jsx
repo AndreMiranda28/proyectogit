@@ -21,12 +21,9 @@ function App() {
   
   return (
     <div className="App">
-
-          <div className="col-sm-6 form1">
+          <div className="col-sm-12 form1">
 
             <div className="app container formConteiner">
-                  <div className="card-body formContenedor">               
-                  <div className="app container">
                     <div className="card-body">                  
                       <div className="form-group">          
                       <h1>REGISTRO DE COMMITS</h1>   
@@ -34,7 +31,7 @@ function App() {
 
                       <div>
                       
-                      <table className="table table-hover table-bordered table-responsive-xl PDFCalendarioTable" id="calendario">
+                      <table className="table table-hover table-bordered table-responsive-xl ">
                             <thead>
                                 <tr className="table-active colorBordeTabla">
                                     <th scope="col">ID Committer</th>
@@ -57,8 +54,6 @@ function App() {
                         </table> 
                       
                         </div>
-                    </div>
-                </div>
                 </div>
             </div>          
           </div> 
