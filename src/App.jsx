@@ -1,53 +1,59 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux';
 import {getCommints} from './Redux/Slices/detalles_git'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { formatoFecha} from './Redux/validations';
 
 function App() {
 
   const reducers=useSelector((state)=>state.operaciones);
   const dispatch=useDispatch();
   const [pokemon_name,set_pokemon]=useState('pikachu');
-  const data= reducers.listcommits.map((item)=><li key={item.name}>{item.name}</li>);
+  const data= reducers.listcommits.map((item)=><td>{item.name}</td>);
+
+  useEffect(() => {
+    dispatch(getCommints({nombre:pokemon_name}))
+  });
+
   return (
     <div className="App">
 
           <div className="col-sm-6 form1">
 
             <div className="app container formConteiner">
-                  <div className="card-body formContenedor">
-                    
+                  <div className="card-body formContenedor">               
                   <div className="app container">
-                    <div className="card-body">
-                      
-                      <div className="form-group">
-                    
-                        <button type="submit" className="btn btn-primary" onClick={()=>{ 
-                        dispatch(getCommints({nombre:pokemon_name}))
-                        }}>
-                        ENVIAR
-                        </button>
+                    <div className="card-body">                  
+                      <div className="form-group">          
+                      <h1>REGISTRO DE COMMITS</h1>   
                       </div>
 
                       <div>
-                        <h3 className="text-black">Resultados</h3>
+                      
+                      <table className="table table-hover table-bordered table-responsive-xl PDFCalendarioTable" id="calendario">
+                            <thead>
+                                <tr className="table-active colorBordeTabla">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Comentario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             {reducers.listcommits.map(item=>
+                             <tr>
+                               <td>{item.commit.author.name}</td>
+                               <td>{item.commit.author.name}</td>
+                               <td>{formatoFecha(item.commit.author.date)}</td>
+                               <td>{item.commit.message}</td>
 
-                        { reducers.loading && < div className="text-warning">Buscando... </div>}
-                        
-                        {
-                          reducers.listcommits.length >=1 &&
-                            <div className="text-success">
-                              <ul>
-                                {data}
-                              </ul>
-                            </div>
-                        }
+                               </tr>)}
 
-                        {
-                        reducers.error!='' && <span className="text-danger">{reducers.error}</span>
-                        }
-                      </div>
+                            </tbody>
+                        </table> 
+                      
+                        </div>
                     </div>
                 </div>
 

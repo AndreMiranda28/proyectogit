@@ -13,8 +13,7 @@ export const getCommints=createAsyncThunk(
     "operaciones/getCommints",
     async ({nombre},{dispatch,state}) => {
 
-       const response=await  Axios.get("https://api.github.com/users/AndreMiranda28/repos")
-       //console.log(response.data);
+       const response=await  Axios.get("https://api.github.com/repos/AndreMiranda28/proyectogit/commits")
        return response.data 
 
     }
