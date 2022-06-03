@@ -39,9 +39,7 @@ export const operacionesSlice = createSlice({
             state.loading=false
             state.error="Try again, please"
             state.listcommits=[]
-
         },
-
     }
   })
 

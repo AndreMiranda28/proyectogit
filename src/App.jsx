@@ -9,11 +9,13 @@ function App() {
 
   const reducers=useSelector((state)=>state.operaciones);
   const dispatch=useDispatch();
-  const [pokemon_name,set_pokemon]=useState('pikachu');
-  const data= reducers.listcommits.map((item)=><td>{item.name}</td>);
+  const [valor,set_valor]=useState(1);
 
   useEffect(() => {
-    dispatch(getCommints({nombre:pokemon_name}))
+    if (valor==1) {
+       dispatch(getCommints({nombre:""}));
+       set_valor(0);
+    }
   });
 
   return (
@@ -34,16 +36,16 @@ function App() {
                       <table className="table table-hover table-bordered table-responsive-xl PDFCalendarioTable" id="calendario">
                             <thead>
                                 <tr className="table-active colorBordeTabla">
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Author</th>
+                                    <th scope="col">ID Committer</th>
+                                    <th scope="col">Autor</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Comentario</th>
                                 </tr>
                             </thead>
                             <tbody>
                              {reducers.listcommits.map(item=>
-                             <tr>
-                               <td>{item.commit.author.name}</td>
+                             <tr key={item.sha}>
+                               <td>{item.committer.id}</td>
                                <td>{item.commit.author.name}</td>
                                <td>{formatoFecha(item.commit.author.date)}</td>
                                <td>{item.commit.message}</td>
@@ -56,15 +58,8 @@ function App() {
                         </div>
                     </div>
                 </div>
-
-
-
                 </div>
-            </div> 
-
-
-    
-            
+            </div>          
           </div> 
 
     </div>

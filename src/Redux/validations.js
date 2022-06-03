@@ -1,14 +1,18 @@
 export function formatoFecha(fecha)
 {
     var fechaCorrecta = "";
-    var fechaIngresada = String(fecha);
+    var fechaIngresada  = new Date(fecha);
 
     if(fechaIngresada !== "" && fechaIngresada !== undefined)
     {
-        var añoF = fechaIngresada.substring(0,4);
-        var mesF = fechaIngresada.substring(5,7);
-        var diaF = fechaIngresada.substring(8,10);
-        fechaCorrecta = diaF + "/" + mesF + "/" + añoF;
+        var añoF = fechaIngresada.getFullYear().toString().padStart(2, '0');
+        var mesF = (fechaIngresada.getMonth() + 1).toString().padStart(2, '0');
+        var diaF = fechaIngresada.getDate().toString().padStart(2, '0');
+        var horaF = fechaIngresada.getHours();
+        var minutoF = fechaIngresada.getMinutes();
+        var segundoF = fechaIngresada.getSeconds();
+
+        fechaCorrecta = diaF + "/" + mesF + "/" + añoF + " "+horaF+":"+minutoF + ":"+segundoF;
     }
     return fechaCorrecta;
 }
